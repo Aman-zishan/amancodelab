@@ -1,5 +1,8 @@
-<p align="center"><h1>this is a repository for hacktoberfest<h1></p>
-**What is Hacktoberfest?**
+<p align="center">
+   <h1>this is a repository for hacktoberfest
+   <h1>
+</p>
+     <h1>What is Hacktoberfest?</h1>
 <p align="center">
   <a href="https://hacktoberfest.digitalocean.com/">
     <img alt="hacktoberfest" src="https://hacktoberfest.digitalocean.com/assets/logo-hf19-header-8245176fe235ab5d942c7580778a914110fa06a23c3d55bf40e2d061809d8785.svg"/>
