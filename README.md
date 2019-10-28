@@ -1,7 +1,5 @@
-<p align="center">
-   <h1>this is a repository for hacktoberfest
-   <h1>
-</p>
+<h1 align="center">this is a repository for hacktoberfest
+</h1>
      <h1>What is Hacktoberfest?</h1>
 <p align="center">
   <a href="https://hacktoberfest.digitalocean.com/">
