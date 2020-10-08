@@ -11,5 +11,5 @@ Hacktoberfest® is open to everyone in our global community. Whether you’re a 
 ## How can u contribute?
 - **add a program or a text file whatever you like to this repository.**
 - **include ur name at the top as "#yourname".**
-- **give a pull request.**
+- **Open a pull request.**
 
