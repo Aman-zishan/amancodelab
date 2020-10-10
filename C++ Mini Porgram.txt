@@ -1,0 +1,181 @@
+#include<iostream.h>
+#include<conio.h>
+#include<iomanip.h>
+#include<process.h>
+#include<string.h>
+
+struct student
+{
+ int r;
+ char name[20];
+ int m1,m2;
+ int total;
+};
+
+void input(student s[10], int n)
+{
+ cout<<"\n Input Data Into The Record";
+ cout<<endl<<"================================"<<endl;
+ int k=1;
+ for(int i=0; i<n; i++)
+ {
+  cout<<"\n Student "<<k;
+  cout<<"\n Enter Roll No.";
+  cin>>s[i].r;
+  cout<<"\n Enter Name";
+  cin>>s[i].name;
+  cout<<"\n Enter Mark 1: ";
+  cin>>s[i].m1;
+  cout<<"\n Enter Mark 2: ";
+  cin>>s[i].m2;
+  s[i].total=s[i].m1+s[i].m2;
+  cout<<endl;
+  ++k;
+ }
+ clrscr();
+}
+void output(student s[10],int n)
+{
+ cout<<"\n Displaying the Record";
+ cout<<endl<<endl<<"==========================="<<endl;
+  for(int i=0; i<n; i++)
+ {
+  cout<<"\n Roll no."<<setw(12)<<"Name"<<setw(23)<<"Mark 1"<<setw(29)<<"Mark 2"<<setw(35)<<"Total";
+  cout<<endl<<s[i].r;
+  cout<<"                      "<<s[i].name;
+  cout<<"                      "<<s[i].m1;
+  cout<<"                     "<<s[i].m2;
+  cout<<"                        "<<s[i].total;
+  cout<<endl;
+ }
+}
+
+void sort(student s[10],int n)
+{
+ student temp;
+ for(int i=0;i<n-1;i++)
+  {
+   for(int j=0;j<n-i-1;j++)
+   {
+    if(s[j].r>s[j+1].r)
+    {
+     temp=s[j];
+     s[j]=s[j+1];
+     s[j+1]=temp;
+     }
+   }
+  }
+}
+
+
+void search(student s[10], int n)
+{
+ cout<<"\n Search"<<endl<<"==========";
+ int b;
+ do
+ {
+  int pos=-1;
+  int l,f,mid;
+  l=n-1;
+  f=0;
+  cout<<"\n1 : Based on Roll no.";
+  cout<<"\n2 : Based on Student Name";
+  cout<<"\n3 : Exit Search";
+  cout<<"\n4 : Exit Main Program";
+  cout<<"\n Enter Choice";
+  cin>>b;
+  if(b==3)
+    return;
+  else if(b==4)
+    exit(0);
+  else if(b==1);
+  {
+    int r1;
+    cout<<"\n Enter The Roll No. to be searched";
+    cin>>r1;
+    while(f<=l)
+    {
+       mid=(f+l)/2;
+       if(s[mid].r==r1)
+       {
+	 pos=mid+1;
+	 break;
+       }
+       else if(r1>s[mid].r)
+	 f=mid+1;
+       else if(r1<s[mid].r)
+	 l=mid-1;
+    }
+    if(pos==-1)
+       cout<<"\n Search Unsucesfull: Roll No. Not Present in the Record";
+    else
+       cout<<"\n Search Sucesfull: Student position is"<<pos;
+    cout<<endl;
+  }
+   if(b==2)
+  {
+    char v[20];
+    cout<<"\n Enter The Student Name to be searched";
+    cin>>v;
+    while(f<=l)
+    {
+      mid=(f+l)/2;
+      if( (strcmpi(s[mid].name,v)==0 ) )
+      {
+	 pos=mid+1;
+	 break;
+      }
+      else if( (strcmpi(v,s[mid].name)>0) )
+	 f=mid+1;
+      else
+	 l=mid-1;
+   }
+   if(pos==-1)
+      cout<<"\n Search Unsucesfull: Student Not Present in the Record";
+   else
+      cout<<"\n Search Sucesfull: Student position is"<<pos;
+   cout<<endl;
+ }
+ else
+ cout<<"\n Please Enter correct choice";
+ }while(b!=3);
+
+}
+void main()
+{clrscr();
+  student s[10];
+  int a,n;
+  cout<<" Student Record "<<endl;
+  cout<<"================"<<endl;
+  cout<<"\n0 : To Enter the Record before choosing";
+ do
+ {
+  cout<<"\n1 : To Sort and Display";
+  cout<<"\n2 : To Seach a Student";
+  cout<<"\n3 : Exit";
+  cout<<endl<<"\n Enter Choice";
+  cin>>a;
+  if(a==3)
+    exit(0);
+  else if((a==1)||(a==2)||(a==0))
+  {
+   cout<<"\n Enter Number of Students";
+   cin>>n;
+   input(s,n);
+   output(s,n);
+   if(a==1)
+    {
+     sort(s,n);
+     cout<<"\n The sorted Record:-";
+     output(s,n);
+    }
+   else if(a==2)
+     search(s,n);
+
+  }
+  else
+  cout<<"\n Please Enter a correct choice";
+  }while(a!=3);
+}
+
+
