@@ -1,9 +1,3 @@
-/* ****************************************************************
-Author Name : Aparna Sathyanathan
-Register Number : 20419023
-Date : 21/10/2020
-Experiment : Write a menu driven program to implement bubble sort, selection sort and insertion sort.
-**************************************************************** */
 #include<stdio.h>
 
 //Bubble Sort Function
@@ -79,9 +73,6 @@ void display(int arr[],int n)
 
 int main()
 {
-   printf("****************************************************************\n");
-   printf("Author Name : Aparna Sathyanathan\nRegister Number : 20419023\nDate : 21/10/2020\nExperiment : Write a menu driven program to implement bubble\nsort, selection sort and insertion sort.");
-   printf("\n****************************************************************\n\n");
    int n,opt,i;
    char ch;
    do {
