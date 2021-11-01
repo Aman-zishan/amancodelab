@@ -1,0 +1,112 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8"> 
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Caesar cipher</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+    
+<body>
+  <h1>Caesar cipher</h1>
+  <div id="wrapper">
+    <div class="input-group">
+      <div class="input-group-prepend">
+        <span class="input-group-text">Original text</span>
+      </div>
+      <input id="textBox" type="text" class="form-control" autocomplete="off" placeholder="Text, move; Example -> ABC,3">
+    </div>
+      <button id="btn" type="button" class="btn btn-primary btn-lg">Encrypt</button>
+    <div class="card">
+      <h2>Encrypted text</h2>
+      <div id="result" class="card-body"></div>
+    </div>
+  </div>
+
+  <style>
+    body{
+      background-color:rgb(119, 158, 209);
+      padding: 4%;
+    }
+    h1{
+      text-align: center;
+    }
+    #wrapper{
+      width: 700px;
+      background-color:#fff;
+      margin: 5% auto 0;
+      padding: 4%;
+      box-sizing: border-box;
+      border: 1px solid black;
+      border-radius: 3px;
+      box-shadow:0 3px 4px black;
+    }
+    .input-group{
+      margin-bottom: 30px;
+    }
+    #btn{
+      margin-bottom: 30px;
+      position: relative;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  </style>
+  
+  <script>
+    function caesar(){
+      var result = "";
+      var textAndMove = getTextAndMove();
+      var validation = validate(textAndMove[0],textAndMove[1]);
+      if(validation == true){
+        let txtSplit = textAndMove[0].split("");
+        let move = textAndMove[1];
+        txtSplit.forEach(element => {
+          if(element != " " && element === element.toUpperCase()){
+            var startIndex = element.charCodeAt();
+            if(startIndex + move > 90 ){
+              var startIndex = startIndex - 26;
+            }
+            let elementEncrypt = String.fromCharCode(startIndex + move);
+            result += elementEncrypt;
+          }else if(element != " " && element === element.toLowerCase()){  
+            var startIndex = element.charCodeAt();
+            if(startIndex + move > 122){
+              var startIndex = startIndex - 26;
+            }
+            let elementEncrypt = String.fromCharCode(startIndex + move);
+            result += elementEncrypt;
+          }else{
+            result += element;
+          };    
+        });
+        document.getElementById("result").innerText = result;
+      }else{
+        alert("Only upper or lower case letters (excluding 'ñ' and 'Ñ') can be entered in the text and only numbers from 1 to 9 can be entered in the move size❗❗");
+      }
+    };
+    //Listener al boton.
+    document.getElementById("btn").addEventListener("click",caesar);
+
+    //Funcion para obtener texto y movimiento.
+    function getTextAndMove(){
+      let content = document.getElementById("textBox").value;
+      if(content.indexOf(",") != -1){
+        var txt = content.split(",")[0];
+        var move = parseInt(content.split(",")[1]);
+      }else{
+        var txt = content;
+        var move = 1;
+      }
+      return [txt,move];
+    }
+    //Funcion para validate input.
+    function validate(txt,move){
+      const patronTxt = /^[A-Z,a-z]+$/;
+      const patronNum = /^[1-9]$/;
+      if(patronTxt.test(txt) && patronNum.test(move)){
+        return true;
+      }
+    };
+  </script>   
+</body>
+</html>
